@@ -3,7 +3,7 @@
 SCRIPT=$1
 
 if [[ -z $GITHUB_PAT ]]; then
-    echo "GITHUB_PAT env var must be set" # add some info on where to get one
+    echo "GITHUB_PAT env var must be set. You can create a personal access token at https://github.com/settings/tokens"
     exit 1
 fi
 
