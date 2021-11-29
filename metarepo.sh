@@ -7,7 +7,8 @@ if [[ -z $GITHUB_PAT ]]; then
     exit 1
 fi
 
-REPOS=$(curl https://api.github.com/orgs/NHSDigital/teams/api-gateway/repos -H "Authorization: Bearer $GITHUB_PAT" 2> /dev/null)
+# FIXME: this will break if there's more than 100 repos
+REPOS=$(curl https://api.github.com/orgs/NHSDigital/teams/api-gateway/repos?per_page=100 -H "Authorization: Bearer $GITHUB_PAT" 2> /dev/null)
 REPO_URLS=$(echo $REPOS | jq .[].git_url -r)
 REPO_NAMES=$(echo $REPOS | jq .[].name -r)
 
